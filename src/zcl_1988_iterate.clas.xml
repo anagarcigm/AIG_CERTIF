@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCL_1988_ARITHMETIC_CALC</CLSNAME>
+    <CLSNAME>ZCL_1988_ITERATE</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT> Arithmetic Calculations</DESCRIPT>
+    <DESCRIPT>Example of fibonacci</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
