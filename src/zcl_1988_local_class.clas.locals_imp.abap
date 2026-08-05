@@ -20,7 +20,9 @@ CLASS lcl_connection DEFINITION.
 PROTECTED SECTION.
   PRIVATE SECTION.
     DATA: carrier_id    TYPE /dmo/carrier_id,
-          connection_id TYPE /dmo/connection_id.
+          connection_id TYPE /dmo/connection_id,
+          airport_from_id TYPE /dmo/airport_from_id,
+          airport_to_id type /dmo/airport_to_id.
 
 endclass.
 
@@ -33,6 +35,16 @@ class lcl_connection implementation.
     ENDIF.
     carrier_id = i_carrier_id.
     connection_id = i_connection_id.
+    SELECT SINGLE
+    FROM /dmo/connection
+    FIELDS airport_from_id, airport_to_id
+    WHERE carrier_id = @i_carrier_id
+    AND connection_id = @i_connection_id
+    INTO ( @airport_from_id, @airport_to_id ).
+    IF sy-subrc EQ 0.
+      RAISE EXCEPTION TYPE cx_abap_invalid_value.
+    ENDIF.
+
     lcl_connection=>conn_counter = lcl_connection=>conn_counter + 1.
   ENDMETHOD.
 
@@ -40,7 +52,8 @@ class lcl_connection implementation.
 
     APPEND |carrier id = { carrier_id }| TO r_output.
     APPEND |connection id = { connection_id }| TO r_output.
-
+    APPEND |Departure = { airport_from_id }| to r_output.
+    Append |Destination = { airport_to_id }| to r_output.
   ENDMETHOD.
 
 
