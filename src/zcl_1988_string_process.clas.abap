@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_1988_string_process IMPLEMENTATION.
+CLASS ZCL_1988_STRING_PROCESS IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

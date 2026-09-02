@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_1988_functional_methods IMPLEMENTATION.
+CLASS ZCL_1988_FUNCTIONAL_METHODS IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

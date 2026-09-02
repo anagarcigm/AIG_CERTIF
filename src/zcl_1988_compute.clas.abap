@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_1988_compute IMPLEMENTATION.
+CLASS ZCL_1988_COMPUTE IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

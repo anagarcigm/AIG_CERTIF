@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_1988_data_objects IMPLEMENTATION.
+CLASS ZCL_1988_DATA_OBJECTS IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

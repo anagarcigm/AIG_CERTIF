@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_1988_local_class IMPLEMENTATION.
+CLASS ZCL_1988_LOCAL_CLASS IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

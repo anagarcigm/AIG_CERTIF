@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_1988_arithmetic_calc IMPLEMENTATION.
+CLASS ZCL_1988_ARITHMETIC_CALC IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

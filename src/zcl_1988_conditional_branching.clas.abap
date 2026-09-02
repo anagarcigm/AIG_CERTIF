@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_1988_conditional_branching IMPLEMENTATION.
+CLASS ZCL_1988_CONDITIONAL_BRANCHING IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

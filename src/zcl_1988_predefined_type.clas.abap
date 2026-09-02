@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_1988_predefined_type IMPLEMENTATION.
+CLASS ZCL_1988_PREDEFINED_TYPE IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
