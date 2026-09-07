@@ -24,7 +24,7 @@ CLASS zcl_1988_structured_types IMPLEMENTATION.
 
     DATA connection_full TYPE /DMO/I_Connection.
 
-    SELECT SINGLE
+    SELECT single
      FROM /dmo/I_Connection
    FIELDS AirlineID, ConnectionID, DepartureAirport, DestinationAirport,
           DepartureTime, ArrivalTime, Distance, DistanceUnit
