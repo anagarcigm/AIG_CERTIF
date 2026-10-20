@@ -6,8 +6,9 @@ CLASS lcl_connection DEFINITION.
 
   PUBLIC SECTION.
 
-    CLASS-DATA conn_counter TYPE i READ-ONLY.
 
+    CLASS-DATA conn_counter TYPE i READ-ONLY.
+    CLASS-METHODS class_constructor.
     METHODS constructor
       IMPORTING
         i_connection_id TYPE /dmo/connection_id
@@ -25,15 +26,31 @@ CLASS lcl_connection DEFINITION.
     DATA carrier_id    TYPE /dmo/carrier_id.
     DATA connection_id TYPE /dmo/connection_id.
 
-    TYPES:BEGIN OF ST_DETAILS,
-       DepartureAirport TYPE /dmo/airport_from_id,
-       DestinationAirport   TYPE /dmo/airport_to_id,
-       AirlineName    type /dmo/carrier_name.
-    TYPES:END OF ST_DETAILS.
-    DATA: LS_DETAILS TYPE ST_DETAILS.
+    TYPES:BEGIN OF st_details,
+            DepartureAirport   TYPE /dmo/airport_from_id,
+            DestinationAirport TYPE /dmo/airport_to_id,
+            AirlineName        TYPE /dmo/carrier_name.
+    TYPES:END OF st_details.
+    DATA: ls_details TYPE st_details.
+
+    TYPES:BEGIN OF st_airports,
+            airport_id TYPE /dmo/airport_id,
+            name       TYPE /dmo/airport_name,
+          END OF st_airports.
+    TYPES tt_airports TYPE STANDARD TABLE OF st_Airports
+                   WITH NON-UNIQUE DEFAULT KEY.
+    CLASS-DATA: t_airports TYPE tt_airports.
 ENDCLASS.
 
 CLASS lcl_connection IMPLEMENTATION.
+
+  METHOD class_constructor.
+
+  SELECT FROM /DMO/I_AIRPORT
+  FIELDS AIRPORTID AS AIRPORT_ID, NAME
+  INTO TABLE @T_AIRPORTS.
+
+  ENDMETHOD.
 
   METHOD constructor.
 
@@ -74,8 +91,8 @@ CLASS lcl_connection IMPLEMENTATION.
     APPEND |Carrier:     { carrier_id      }|             TO r_output.
     APPEND |Carrier : { ls_details-AirlineName }|               TO r_output.
     APPEND |Connection:  { connection_id   }|             TO r_output.
-    APPEND |Departure:   { ls_details-departureairport }|    TO r_output.
-    APPEND |Destination: { ls_details-destinationairport }| TO r_output.
+    APPEND |Departure:   { ls_details-departureairport } - { t_airports[ airport_id = ls_details-departureairport ]-name }|    TO r_output.
+    APPEND |Destination: { ls_details-destinationairport } - { t_airports[ airport_id = ls_details-destinationairport ]-name }| TO r_output.
 
   ENDMETHOD.
 
